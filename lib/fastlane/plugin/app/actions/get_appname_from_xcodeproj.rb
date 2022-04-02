@@ -5,7 +5,7 @@ module Fastlane
   module Actions
 
     # 获取app名
-    class GetAppNameFromXcodeprojAction < Action
+    class GetAppnameFromXcodeprojAction < Action
       require 'xcodeproj'
       require 'pathname'
 
