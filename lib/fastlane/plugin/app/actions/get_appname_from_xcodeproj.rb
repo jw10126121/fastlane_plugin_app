@@ -3,7 +3,9 @@ require_relative '../helper/app_helper'
 
 module Fastlane
   module Actions
-
+    module SharedValues
+      APP_NAME = "APP_NAME"
+    end
     # 获取app名
     class GetAppnameFromXcodeprojAction < Action
       require 'xcodeproj'
@@ -15,7 +17,7 @@ module Fastlane
         # UI.message("The appinfo plugin is working!")
         unless params[:xcodeproj]
           if Helper.test?
-            params[:xcodeproj] = "/tmp/fastlane/tests/fastlane/xcodeproj/versioning_fixture_project.xcodeproj"
+            params[:xcodeproj] = "/tmp/fastlane/tests/fastlane/xcodeproj/app_fixture_project.xcodeproj"
           else
             params[:xcodeproj] = Dir["*.xcodeproj"][0] unless params[:xcodeproj]
           end
@@ -68,7 +70,7 @@ module Fastlane
         project.select_scheme
 
         app_name = project.build_settings(key: 'BUNDLE_DISPLAY_NAME')
-        UI.user_error! "Cannot resolve $(BUNDLE_DISPLAY_NAME) in for the scheme #{config.scheme} with the name #{params.configuration}" if build_number.nil? || build_number.empty?
+        UI.user_error! "Cannot resolve $(BUNDLE_DISPLAY_NAME) in for the scheme #{config.scheme} with the name #{params.configuration}" if app_name.nil? || app_name.empty?
         app_name
       end
 
