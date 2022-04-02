@@ -1,5 +1,5 @@
 require 'fastlane/action'
-require_relative '../helper/appinfo_helper'
+require_relative '../helper/app_helper'
 
 module Fastlane
   module Actions
